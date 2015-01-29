@@ -3,6 +3,7 @@ import sys
 import logging
 import locale
 import easypost
+import newrelic.agent
 
 from flask import Flask, render_template, request, jsonify, flash, redirect, url_for
 from flask.ext.assets import Environment, Bundle
@@ -15,9 +16,6 @@ app = Flask(__name__)
 app.config['WTF_CSRF_ENABLED'] = os.environ['WTF_CSRF_ENABLED']
 app.config['SECRET_KEY'] = os.environ['WTF_CSRF_SECRET_KEY']
 assets = Environment(app)
-
-app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.ERROR)
 
 locale.setlocale( locale.LC_ALL, '')
 
@@ -169,4 +167,5 @@ def show_rate():
 if __name__ == '__main__':
     # app.debug = True
     # app.run(host='0.0.0.0')
+    app = newrelic.agent.wsgi_application()(app)
     app.run()
