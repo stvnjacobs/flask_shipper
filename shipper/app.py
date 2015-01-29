@@ -75,7 +75,7 @@ def about():
 
 @app.route('/ship/')
 def create_shipment():
-    flash('This is a work in progress.  For more info, follow the About page link above')
+    flash('This is a work in progress.  For more info, follow the About link above')
     flash('The forms are are auto filled simply to speed up development and testing.  Feel free to change to your hearts content!')
 
     parcel_form = Parcel()
