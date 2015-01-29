@@ -1,5 +1,6 @@
 import os
-import ConfigParser
+import sys
+import logging
 import locale
 import easypost
 
@@ -14,6 +15,9 @@ app = Flask(__name__)
 app.config['WTF_CSRF_ENABLED'] = os.environ['WTF_CSRF_ENABLED']
 app.config['SECRET_KEY'] = os.environ['WTF_CSRF_SECRET_KEY']
 assets = Environment(app)
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 locale.setlocale( locale.LC_ALL, '')
 
