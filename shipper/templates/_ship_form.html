@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% from "_form_helpers.html" import render_field %}
+
+{% block form %}  
+<form id="ship-form" method="post" action="/rates/">
+{{ parcel_form.csrf_token }}                 
+<div class="row">
+	<div class="col-sm-6 col-md-4">
+        <section class="address">
+            <h2>Sender</h2>
+            <div class="panel">
+				{{ render_field(parcel_form.sender_name, class="form-control") }}
+				{{ render_field(parcel_form.sender_company, class="form-control") }}
+				{{ render_field(parcel_form.sender_address1, class="form-control") }}
+				{{ render_field(parcel_form.sender_address2, class="form-control") }}
+				{{ render_field(parcel_form.sender_city, class="form-control") }}
+				{{ render_field(parcel_form.sender_state, class="form-control") }}
+				{{ render_field(parcel_form.sender_zip_code, class="form-control") }}
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-6 col-md-4">
+		<section class="address">
+            <h2>Receiver</h2>
+            <div class="panel">
+				{{ render_field(parcel_form.receiver_name, class="form-control") }}
+				{{ render_field(parcel_form.receiver_company, class="form-control") }}
+				{{ render_field(parcel_form.receiver_address1, class="form-control") }}
+				{{ render_field(parcel_form.receiver_address2, class="form-control") }}
+				{{ render_field(parcel_form.receiver_city, class="form-control") }}
+				{{ render_field(parcel_form.receiver_state, class="form-control") }}
+				{{ render_field(parcel_form.receiver_zip_code, class="form-control") }}
+			</div>
+		</section>
+	</div>
+	<div class="col-md-12 col-md-4">
+		<section>
+			<h2>Package</h2>
+    		<div class="panel">
+			    {{ render_field(parcel_form.length, class="form-control") }}
+			    {{ render_field(parcel_form.width, class="form-control") }}
+			    {{ render_field(parcel_form.height, class="form-control") }}
+		      	{{ render_field(parcel_form.weight, class="form-control") }}
+		   	</div>
+	   	</section>
+	   	<section>
+	   		<h2>Carriers</h2>
+	   		<div class="panel">
+				{% for carrier in carriers %}
+				<label class="checkbox-inline">
+					<input type="checkbox" name="carrier" value="{{ carrier }}" checked>{{ carrier }}
+				</label>
+				{% endfor %}
+
+			</div>
+		</section>
+	</div>
+</div>
+<section>
+	<h2>Check Rates</h2>
+	<div class="panel">
+		<input type="submit" value="Check Rates" class="btn btn-success">
+	</div>
+</section>
+</form>
+{% endblock form %}

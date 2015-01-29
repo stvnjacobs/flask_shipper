@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2></h2>
+<div class="panel">
+	<h3>About</h3>
+	<p>
+		This is currently a side project that aims to be a web user interface for the <a href="http://www.easypost.com">EasyPost shipping api</a>.  It began as a way to scractch an itch after watching a co-worker get repeatedly frustrated with USPS shipping, and another always in need of shipping quotes.  An efficient way to interact with many carriers at once could only be beneficial.
+	</p>
+	<p>
+		Also, this project is my first attempt to add a web interface and real user input to a Python application, both of which I get help from the <a href="http://flask.pocoo.org/">Flask microframework</a>.  The main goal is simplicity for the user.
+	</p>
+	<h4>Roadmap &amp; Ideas:</h4>
+	<ul>
+		<li>User accounts to allow for storing freight account information.  Necessary for the use of negotiated rates with EasyPost's large list of connected shipping services</li>
+		<li>Ability to purchase and print labels</li>
+		<li>Tracking packages</li>
+		<li>Warnings, concerns, can't ship away sister or cat, etc.</li>
+	</ul>
+
+	<h4>Notes</h4>
+	<ul>
+		<li>USPS Rates Provided. <small>These are Commercial Plus Pricing provided by easypost.</small>
+		<li>UPS Rates Provided <small>These are non-negotiated rates, equal to those from a newly created UPS account, since thats what they are!</small></li>
+	</ul>
+</div>
+{% endblock content %}

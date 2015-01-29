@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Pricing</h2>
+<div class="row">
+	{% if options %}
+	<section class="col-md-8">
+		<form id="rate-options" method="post" action="/rate/">
+			{% for carrier in carriers %}
+			<div class="pricing {{ carrier | lower }}">
+				<h3>{{ carrier }}</h3>
+				<div class="panel">
+				 	<table class="table table-responsive table-hover">
+						<thead>
+							<tr>
+							   	<th></th>
+							   	<th>Service</th>
+							   	<th>Cost</th>
+							   	<th>Delivery</th>
+							</tr>
+						</thead>
+						<tbody>	
+							{% for d in options %}
+							{% if d['carrier'] == carrier %}
+							<tr>
+								<td>
+									<input type="hidden" value="{{ d['id'] }}" name="rate"> <!-- type="radio" -->
+									<input type="hidden" value="{{ shipment_id }}" name="shipment_id">
+									<input type="hidden" value="{{ shipment }}" name="shipment">
+								</td>
+							   	<td>{{ d['service'] }}</td>
+							   	<td>{{ d['rate'] }}</td>
+							   	<td>
+							   		{% if d['guaranteed'] == True %}
+							   		<span class="btn btn-success btn-xs">{{ d['days'] }} Days Guaranteed</span>
+							   		{% endif %}
+							   	</td>
+							</tr>
+							{% endif %}
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			{% endfor %}
+			<!-- <p><input id="rate-submit" type="submit" value="Submit" class="btn btn-success"></p> -->
+		</form>
+	</section>
+	{% endif %}
+
+	<section class="col-md-4">
+		<div class="panel">
+			<h3>Package Information</h3>
+			<dl>
+			    <dt>From:</dt>
+				<dd>
+					<address>
+					    {% if sender_address['name'] != "" %}
+							{{ sender_address['name'] }}<br>
+						{% endif %}
+						{% if sender_address['company'] != "" %}
+							{{ sender_address['company'] }}<br>
+						{% endif %}
+						{{ sender_address['street1'] }}<br>
+						{% if sender_address['street2'] != "" %}
+							{{ sender_address['street2'] }}<br>
+						{% endif %}
+						{{ sender_address['city'] }},&nbsp;
+						{{ sender_address['state'] }}&nbsp;
+						{{ sender_address['zip'] }}
+					</address>
+				</dd>
+				<dt>To:</dt>
+				<dd>
+					<address>
+			    		{% if receiver_address['name'] != "" %}
+							{{ receiver_address['name'] }}<br>
+						{% endif %}
+						{% if receiver_address['company'] != "" %}
+							{{ receiver_address['company'] }}<br>
+						{% endif %}
+						{{ receiver_address['street1'] }}<br>
+						{% if receiver_address['street2'] != "" %}
+							{{ receiver_address['street2'] }}<br>
+						{% endif %}
+						{{ receiver_address['city'] }},&nbsp;
+						{{ receiver_address['state'] }}&nbsp;
+						{{ receiver_address['zip'] }}
+					</address>
+				</dd>		    		
+			</dl>
+			<table>
+				<tbody>
+					<tr>
+						<th>Length:</th>
+						<td>{{ parcel['length'] }}&Prime;</td>
+					</tr>
+					<tr>
+						<th>Width:</th>
+						<td>{{ parcel['width'] }}&Prime;</td>
+					</tr>
+					<tr>
+						<th>Height:</th>
+						<td>{{ parcel['height'] }}&Prime;</td>    		
+				   	</tr>
+				   	<tr>
+			    		<th>Weight:</th>
+			    		<td>{{ parcel['weight'] }}&nbsp;oz</td>
+			    	</tr>
+			    </tbody>
+			</table>
+		</div>
+	</section>
+</div>
+{% endblock content %}

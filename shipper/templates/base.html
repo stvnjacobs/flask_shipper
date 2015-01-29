@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shipper</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+    {% assets "css_all" %}
+    <link href='{{ ASSET_URL }}' rel='stylesheet' type='text/css'></link>
+    {% endassets %}
+</head>
+<body>
+    <div class="container">
+        <header>
+          <h1><a href="/">Shipper</a></h1>
+          <nav class="nav">
+            <a class="btn btn-default" href="/ship/">Check Rates</a>
+            <a class="btn btn-default" href="/about">About</a>
+          </nav>
+        </header>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="panel" id="flashes" role="dialog">
+              <h4>Notice</h4>
+              <div id="flashes-body">
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+              </div>
+              <button type="button" class="btn btn-danger btn-dismiss">Close</button>
+              <button type="button" class="btn btn-warning btn-dismiss btn-clear">Clear Form</button>
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock content %}
+
+        {% block form %}{% endblock form %}
+
+        {% block parcel_information %}{% endblock parcel_information %}
+
+        {% block price_table %}{% endblock price_table %}
+        <footer>
+          <p>made by steven jacobs <a href="mailto:stjacobs@fastmail.fm">&nbsp;contact&nbsp;</a></p>
+          <p>with the help of <a href="http://www.easypost.com">&nbsp;easypost&nbsp;</a> , <a href="http://flask.pocoo.org/">&nbsp;Flask&nbsp;</a> , and <a href="http://getbootstrap.com/">&nbsp;Bootstrap&nbsp;</a>
+        </footer>
+    </div>
+    {% assets "js_all" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+</body>
+</html>

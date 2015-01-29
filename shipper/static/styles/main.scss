@@ -1,0 +1,113 @@
+@import 'colors';
+
+/* http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #4285f4;
+  font-family: 'Open Sans', sans-serif;
+}
+
+header {
+  padding: 1em;
+  background-color: white;
+  box-shadow: 0 8px 6px -6px black;
+  border-radius: 0 0 4px 4px;
+}
+
+footer {
+  margin-top: 1em;
+  border-top: 1px solid white;
+  color: white;
+}
+footer a {
+  color: #4285f4;
+  background-color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+h1 {
+  color: #4285f4;
+  border-bottom: 1px solid #4285f4;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+h2 {
+  color: white;
+}
+.panel {
+  background: white;
+  position: relative;
+  padding: 1em;
+  border: 1px solid #ccc;
+  box-shadow: 0 8px 6px -6px black;
+}
+
+.panel.warning {
+  border-left: 0.5em solid #f0ad4e;
+}
+
+.pricing > h3 { 
+  padding: 1rem;
+  margin: 0; 
+}
+.pricing .panel {
+  margin-top: -4px;
+}
+#flashes {
+  margin-top: 1em;
+}
+#flashes h3 {
+  margin-top: 0;
+}
+
+.nav > li > a {
+  padding: 0; /* no padding until there are more nav items */
+}
+
+/* brand styles */
+.usps > h3 {
+  border-radius: 4px 4px 0 0;
+  color: $usps-secondary;
+  background: linear-gradient(to bottom, $usps-primary 0%, darken($usps-primary, 10%) 100%);
+}
+.ups > h3 {
+  border-radius: 4px 4px 0 0;
+  color: $ups-secondary;
+  background: linear-gradient(to bottom, $ups-primary 0%, darken($ups-primary, 10%) 100%);
+}
+.fedex > h3 {
+  border-radius: 4px 4px 0 0;
+  color: $fedex-secondary;
+  background: linear-gradient(to bottom, $fedex-primary 0%, darken($fedex-primary, 10%) 100%);
+}
+
+/* http://nicolasgallagher.com/micro-clearfix-hack/ */
+.cf:before,
+.cf:after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+.cf:after {
+  clear: both;
+}
+.cf {
+  *zoom: 1;
+}
