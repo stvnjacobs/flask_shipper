@@ -28,7 +28,7 @@
               <h4>Notice</h4>
               <div id="flashes-body">
                 {% for message in messages %}
-                <p>{{ message }}</p>
+                <p>{{ message|safe }}</p>
                 {% endfor %}
               </div>
               <button type="button" class="btn btn-danger btn-dismiss">Close</button>
