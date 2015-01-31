@@ -4,6 +4,7 @@ import logging
 import locale
 import easypost
 import newrelic.agent
+from helpers.weights import convert_weight_to_oz
 
 from flask import Flask, render_template, request, jsonify, flash, redirect, url_for
 from flask.ext.assets import Environment, Bundle
@@ -113,7 +114,10 @@ def rate_options():
         parcel['length'] = request.form['length']
         parcel['width'] = request.form['width']
         parcel['height'] = request.form['height']
-        parcel['weight'] = request.form['weight']
+        if request.form['weight-unit'] == 'oz':
+            parcel['weight'] = request.form['weight']
+        else:
+            parcel['weight'] = convert_weight_to_oz(float(request.form['weight']), request.form['weight-unit'])
         # parcel['predefined_package'] = request.form['predefined_package']
 
         carriers = request.form.getlist('carrier')

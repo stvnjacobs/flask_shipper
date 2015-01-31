@@ -40,7 +40,22 @@
 			    {{ render_field(parcel_form.length, class="form-control") }}
 			    {{ render_field(parcel_form.width, class="form-control") }}
 			    {{ render_field(parcel_form.height, class="form-control") }}
-		      	{{ render_field(parcel_form.weight, class="form-control") }}
+		      	<div class="form-group">
+		      		<label for="parcelWeight">Weight</label>
+			      	<div class="input-group">
+			      		<input type="text" name="weight" class="form-control" id="parcelWeight">
+			      		<div class="input-group-addon">
+			      			<label class="radio-inline">
+								<input type="radio" name="weight-unit" value="oz" checked>oz
+							</label>
+			      		</div>
+			      		<div class="input-group-addon">
+			      			<label class="radio-inline">
+								<input type="radio" name="weight-unit" value="lb">lb
+							</label>
+			      		</div>
+		      		</div>
+		      	</div>
 		   	</div>
 	   	</section>
 	   	<section>
