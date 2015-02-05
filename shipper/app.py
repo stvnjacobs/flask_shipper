@@ -8,10 +8,8 @@ from helpers.weights import convert_weight_to_oz
 
 from flask import Flask, render_template, request, jsonify, flash, redirect, url_for
 from flask.ext.assets import Environment, Bundle
-from flask_wtf import Form
-from flask_wtf.csrf import CsrfProtect
-from wtforms import StringField, IntegerField
-from wtforms.validators import DataRequired
+
+from forms.parcel import Parcel
 
 app = Flask(__name__)
 app.config['WTF_CSRF_ENABLED'] = os.environ['WTF_CSRF_ENABLED']
@@ -37,26 +35,6 @@ css = Bundle(
     filters='pyscss',
     output='dist/bundle.css')
 assets.register('css_all', css)
-
-class Parcel(Form):
-    sender_name = StringField('Full Name')
-    sender_company = StringField('Company')
-    sender_address1 = StringField('Address 1', validators=[DataRequired()])
-    sender_address2 = StringField('Address 2')
-    sender_city = StringField('City', validators=[DataRequired()])
-    sender_state = StringField('State', validators=[DataRequired()])
-    sender_zip_code = StringField('Zip', validators=[DataRequired()])
-    receiver_name = StringField('Full Name')
-    receiver_company = StringField('Company')
-    receiver_address1 = StringField('Address 1', validators=[DataRequired()])
-    receiver_address2 = StringField('Address 2')
-    receiver_city = StringField('City', validators=[DataRequired()])
-    receiver_state = StringField('State', validators=[DataRequired()])
-    receiver_zip_code = StringField('Zip', validators=[DataRequired()])
-    length = IntegerField('Length <small>(inches)</small>')
-    width = IntegerField('Width <small>(inches)</small>')
-    height = IntegerField('Height <small>(inches)</small>')
-    weight = IntegerField('Weight <small>(ounces)</small>')
 
 
 @app.route('/')
