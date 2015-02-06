@@ -75,7 +75,7 @@ def about():
 @app.route('/ship/')
 def create_shipment():
     flash('This is a work in progress.  More info is on the <a href="/about">About</a> page.')
-    flash('The forms are auto filled to speed up development and testing.  If you come from the internet, feel free to clear them and try it out!')
+    flash('The forms can be auto filled to speed up development and testing.')
 
     parcel_form = Parcel()
     carriers = ['USPS', 'UPS']
