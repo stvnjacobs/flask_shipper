@@ -1,6 +1,5 @@
-(function( window ) {
-  "use strict";
-  var document = window.document,
+$('.btn-fill').click(function() {
+var document = window.document,
       fieldValueMap = {
             "sender_name"       : "George Costanza"
           , "sender_company"    : "Vandelay Industries"
@@ -30,5 +29,4 @@
 
         input && input.type !== "hidden" && ( input.value = fieldValueMap[ name ] );
     });
-
-})( window );
+});
