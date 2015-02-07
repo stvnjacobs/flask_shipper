@@ -18,7 +18,7 @@ var document = window.document,
           , "length" : 14
           , "width"  : 12
           , "height" : 3.5
-          , "weight" : 100
+          , "weight" : 7
       };
 
     Object.keys( fieldValueMap ).forEach(function( name ){
